@@ -11,7 +11,7 @@
 //자료 형 이름 = 초기화 값;
 // = 대입 연산연산자, 오른쪽에 있는 값을 왼쪽에있는 변수에 대입하는 연산자
 int number1 = 25;//부호가 있는 4byte 정수형
-int number2 = 4;
+int number2 = 4; // nusigned integer : 부호가 없는 4byte 정수형
 short snum;//부호가 있는 2byte형 정수형
 long lnum;//부호가 있는 8byte 정수형
 float fnum = 2.0f;// 4byte 실수형
