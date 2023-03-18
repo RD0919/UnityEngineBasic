@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.3.32819.101
+VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstProject", "FirstProject\FirstProject.csproj", "{E7A96839-F327-4023-B752-16CC1F8DC445}"
 EndProject
@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Variables", "Variables\Vari
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Methods", "Methods\Methods.csproj", "{83F17DA5-F1E1-4989-941B-10C1A01113B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{1995B733-CB64-4775-A7B9-A205F249FB4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{1995B733-CB64-4775-A7B9-A205F249FB4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassObjectlnstance", "ClassObjectinstance\ClassObjectlnstance.csproj", "{C184CDD2-CE9E-4062-8278-394CF7AB08D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassObjectlnstance", "ClassObjectinstance\ClassObjectlnstance.csproj", "{C184CDD2-CE9E-4062-8278-394CF7AB08D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "만들어보기", "만들어보기\만들어보기.csproj", "{F865516A-D185-4A3A-86C6-E09D13979373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "만들어보기", "만들어보기\만들어보기.csproj", "{F865516A-D185-4A3A-86C6-E09D13979373}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDynamicArray", "MyDynamicArray\MyDynamicArray.csproj", "{71A97B5B-648B-4B50-8C20-B64767D8ECA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F865516A-D185-4A3A-86C6-E09D13979373}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F865516A-D185-4A3A-86C6-E09D13979373}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F865516A-D185-4A3A-86C6-E09D13979373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71A97B5B-648B-4B50-8C20-B64767D8ECA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71A97B5B-648B-4B50-8C20-B64767D8ECA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71A97B5B-648B-4B50-8C20-B64767D8ECA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71A97B5B-648B-4B50-8C20-B64767D8ECA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
