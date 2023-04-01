@@ -15,6 +15,8 @@ using System.Security.Cryptography.X509Certificates;
 //Reset() : Current를 end(default)로 초기화
 
 #region 동적 배열
+
+/*
 MyDynamicArray myDynamicArray = new MyDynamicArray();
 
 myDynamicArray.Add(0);
@@ -59,8 +61,7 @@ arrayList.Add("b");
 arrayList.Add("안녕");
 
 
-
-
+*/
 #endregion
 
 #region Generic 동적배열
@@ -68,6 +69,7 @@ arrayList.Add("안녕");
 //내가 만든 동적배열
 //--------------------------------------------
 
+/*
 MyDynamicArray<double> doubleArray = new MyDynamicArray<double>();
 //<T> : 타입이 정해지지 않은 클래스
 doubleArray.Add(1.0);
@@ -103,12 +105,13 @@ foreach (double item in doubleList)
 { 
 
 }
-
+*/
 #endregion
 
 #region 연결리스트
 //내가 만든 연결리스트
 //--------------------------------
+/*
 MyLinkedList<int> intLinkedList = new MyLinkedList<int>();
 intLinkedList.AddLast(2);
 intLinkedList.AddLast(3);
@@ -127,11 +130,14 @@ LinkedList<float>floats = new LinkedList<float>();
 floatLinkedList.AddFirst(3);
 LinkedListNode<float>?dummy2 = floatLinkedList.FindLast(3);
 floatLinkedList.AddAfter(dummy2, 5);
+*/
+#endregion
 
 
 #region generic Dictionary
 //내가 만든 generic Dictionary
 //--------------------------------
+/*
 MyDictionary<string, int> scores = new MyDictionary<string, int>();
 scores.Add("철수", 80);
 scores.Add("영희", 70);
@@ -161,5 +167,60 @@ foreach (char value in grades.Values)
 {
     Console.WriteLine($"등급표{value}");
 }
+*/
+#endregion
+
+#region Q
+//Queue : 선입선출(먼저 들어가고, 먼저 나온다 = 대기열) 데이터 추가가 1, 12, 123 순일 때 데이터는 123, 23, 3 순으로 쌓인다
+//먼저 추가한 데이터를 먼저 뺀다
+
+//아이템 추가
+Queue <string> queue = new Queue<string>();
+queue.Enqueue("철수");
+queue.Enqueue("영희");
+queue.Enqueue("미영");
+
+
+//가장 먼저 추가된 아이템을 반환
+Console.WriteLine(queue.Peek());
+
+while (queue.Count > 0)
+{
+    //가장 앞에 있는 아이템 제거 및 제거된 아이템을 반환
+    Console.WriteLine(queue.Dequeue());
+}
 
 #endregion
+
+
+#region S
+
+//Stack : 후입선출(나중에 들어가고, 먼저 나온다) 데이터가 단계별로 쌓이는데 빠지는데는 맨 위에서 부터 빠진다
+Stack<int> stack = new Stack<int>();
+
+//아이템을 추가
+stack.Push(1);
+stack.Push(5);
+stack.Push(3);
+
+//가장 늦게 추가된 아이템을 반환
+Console.WriteLine(stack.Peek());
+
+
+while (stack.Count > 0)
+{
+    //가장 늦게 추가된 아이템 제거 및 반환
+    Console.WriteLine(stack.Pop());
+}
+
+#endregion
+
+//Binary Tree
+//노드 value, Left, 노드 Right를 가지고 있다
+// 더이상 아래에 노드가 없으면 Leaf Node 최하단 로그 라고 불린다.
+
+//삽입 : 노드는 value가 작은 노드는 큰 노드 기준 왼쪽(Node Left)에 연결함 이때 뿌리 형태 같이 연결 됨 O(LogN)
+//탐색 : 처음 노드 기준으로 탐색 숫자가 그 노드 보다 크거 나 작으면 왼쪽, 오른쪽으로 이동해서 반복 O(LogN) 
+//삭제 : O(LogN)지운 노드 기준 Right로 한번 그 노드에 Right에 숫자가 없으면 왼쪽의 노드를 옮긴다.
+
+//Bubble Sort : 배열을 왼쪽에서 부터 옆 배열을 비교후 바꾸거나 그대로 둬서 정열함

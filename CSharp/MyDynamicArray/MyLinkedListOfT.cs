@@ -117,7 +117,7 @@ namespace MyDynamicArray
             }
             return null;
         }
-
+        
         #endregion
 
         #region 삭제 알고리즘

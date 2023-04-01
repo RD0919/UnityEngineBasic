@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassObjectlnstance", "Clas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "만들어보기", "만들어보기\만들어보기.csproj", "{F865516A-D185-4A3A-86C6-E09D13979373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDynamicArray", "MyDynamicArray\MyDynamicArray.csproj", "{71A97B5B-648B-4B50-8C20-B64767D8ECA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDynamicArray", "MyDynamicArray\MyDynamicArray.csproj", "{71A97B5B-648B-4B50-8C20-B64767D8ECA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortAlgorithms", "SortAlgorithms\SortAlgorithms.csproj", "{4B7766DA-CA93-45EF-B74B-AA41A519CC9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{71A97B5B-648B-4B50-8C20-B64767D8ECA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71A97B5B-648B-4B50-8C20-B64767D8ECA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71A97B5B-648B-4B50-8C20-B64767D8ECA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7766DA-CA93-45EF-B74B-AA41A519CC9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7766DA-CA93-45EF-B74B-AA41A519CC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7766DA-CA93-45EF-B74B-AA41A519CC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7766DA-CA93-45EF-B74B-AA41A519CC9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

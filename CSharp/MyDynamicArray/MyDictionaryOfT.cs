@@ -60,8 +60,9 @@ namespace MyDynamicArray
             {
                 tmpHash += tmpString[i];
             }
-            tmpHash %= DEFAULT_SIZE;
+            tmpHash %= DEFAULT_SIZE;//나머지 연산 = 0
             return tmpHash;
+            //
         }
     }
 }
