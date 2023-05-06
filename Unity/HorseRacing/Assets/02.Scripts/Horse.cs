@@ -5,7 +5,10 @@ using UnityEngine;
 //rigidbody를 건들면 연산을 다시 해야되서 주의해야한다
 public class Horse : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //[SerializeField] : 직렬화 => Field 멥버 변수를 직렬화 
+    //객체를 택스트 파일 데이터로 변환
+    //[DeSerializeField]
+    //[SerializeField]를 쓰는 이유 : private를 사용하면 외부에서 사용하지 못해서 인스펙트 창에 쓰지 않는데 [SerializeField]를 사용하면  HorseEditor에만 접근이 가능해져서 private과 상관없이 인스펙트 창에 나온다
     public bool doMove;
     [SerializeField] private float _speed;
     [Range(0.0f, 1.0f)]
