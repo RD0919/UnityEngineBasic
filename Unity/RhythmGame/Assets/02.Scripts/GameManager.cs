@@ -2,11 +2,26 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//프로퍼퍼티 
 namespace RhythmGame
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour //<- MonoBehavior는 오브젝트에 기능을 넣어주는거라 우리가 만들 수는 없다
     {
-        public static GameManager instance;
+        public static GameManager instance
+        {
+            get 
+            { 
+                if(_instance == null)
+                {
+                    _instance = new GameObject().AddComponent<GameManager>();
+                    DontDestroyOnLoad(_instance.gameObject);
+
+                }
+                return _instance;
+            }
+        }
+
+        private static GameManager _instance;
 
         public GameManager() 
         {
@@ -51,18 +66,11 @@ namespace RhythmGame
 
         private void Awake()
         {
-            if (instance == null)
+            if (_instance != null)
             {
-                instance = this;
-                DontDestroyOnLoad(gameObject);
+               Destroy(gameObject);
             }
-            else
-            {
-                Destroy(gameObject);
-                return;
-            }
-            //코드 기능 질문 필요!!
-            
+           
             
         }
 
