@@ -2,17 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NepenthesController : MonoBehaviour
+public class NepenthesController : EnemyController
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float _attackPower;
+    [SerializeField] private Vector2 _attackBoxCenter;
+    [SerializeField] private Vector2 _attackBoxSize;
+
+    protected override void Hit()
     {
-        
+        base.Hit();
+        Collider2D target =
+        Physics2D.OverlapBox((Vector2)transform.position
+                                           + new Vector2(_attackBoxCenter.x * direction, _attackBoxCenter.y),
+                                            _attackBoxSize,
+                                            0.0f,
+                                            aiDetectMask);
+        if (target != null &&
+            target.gameObject.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.Damage(gameObject, _attackPower);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnDrawGizmos()
     {
-        
+        base.OnDrawGizmos();
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(transform.position
+                                            + new Vector3(_attackBoxCenter.x * direction, _attackBoxCenter.y, 0.0f),
+                                            _attackBoxSize);
     }
 }

@@ -516,6 +516,8 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
             case AI.Attack:
                 {
                     //공격이 끝날 때까지 기다리기 Wait untill Attack finished
+                    if(current != StateType.Attack)
+                        _ai= AI.Think;
                 }
                 break;
             default:
