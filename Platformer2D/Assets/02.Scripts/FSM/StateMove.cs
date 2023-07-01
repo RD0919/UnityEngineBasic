@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class StateMove : State
 {
-    public StateMove(StateMachine machine) : base(machine)
+    public override bool canExecute => true;
+    private GroundDetetor _groundDetetor;
+
+    public StateMove(StateMachine machine) : base(machine)//생성자 machine을 먼저 실행한 뒤 아래의 내용을 실행
     {
+        _groundDetetor = machine.GetComponent<GroundDetetor>();
     }
 
     public override StateType MoveNext()
@@ -32,7 +36,8 @@ public class StateMove : State
                 break;
             case IState<StateType>.Step.OnAction:
                 {
-                    //looping..루프중
+                    if (_groundDetetor.isDetected == false)
+                        destination = StateType.Fall;
                 }
                 break;
             case IState<StateType>.Step.Finish:

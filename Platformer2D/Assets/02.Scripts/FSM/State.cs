@@ -6,6 +6,11 @@ public enum StateType
 {
     Idle,
     Move,
+    Jump,
+    Fall,
+    Land,
+    Crouch,
+    StandUp,
     Attack,
     Hurt,
     Die
@@ -13,6 +18,7 @@ public enum StateType
 
 public abstract class State : IState<StateType>
 {
+    public virtual bool canExecute { get; }
     public IState<StateType>.Step step => currentStep;
     protected IState<StateType>.Step currentStep;
     protected StateMachine machine;
@@ -20,6 +26,8 @@ public abstract class State : IState<StateType>
     protected Rigidbody2D rigidbody;
     protected CapsuleCollider2D collider;
     protected Transform transform;
+    protected Character character;
+    protected Movement movement;
 
     public State(StateMachine machine)
     {
@@ -30,6 +38,8 @@ public abstract class State : IState<StateType>
             .GetComponent<Rigidbody2D>();
         this.collider = machine.GetComponent<CapsuleCollider2D>();
         this.transform = machine.GetComponent<Transform>();
+        this.character = machine.GetComponent<Character>();
+        this.movement = machine.GetComponent<Movement>();
 
     }
 
