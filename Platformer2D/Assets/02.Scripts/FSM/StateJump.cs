@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class StateJump : State
 {
-    public override bool canExecute => _groundDetector.isDetected && (machine.currentType == StateType.Idle || machine.currentType == StateType.Move);
-    private GroundDetetor _groundDetector;
+    public override bool canExecute => _groundDetector.isDetected &&
+                                                          (machine.currentType == StateType.Idle ||
+                                                           machine.currentType == StateType.Move);
+    private GroundDetector _groundDetector;
 
     public StateJump(StateMachine machine) : base(machine)
     {
-        _groundDetector = machine.GetComponent<GroundDetetor>();
+        _groundDetector = machine.GetComponent<GroundDetector>();
     }
 
     public override StateType MoveNext()
@@ -20,13 +22,19 @@ public class StateJump : State
         {
             case IState<StateType>.Step.None:
                 {
+                    movement.isMovable = false;
+                    movement.isDirectionChangeable = true;
+                    rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                    rigidbody.AddForce(Vector2.up * character.jumpForce, ForceMode2D.Impulse);
+                    animator.Play("Jump");
+                    animator.speed = 1.0f;
+                    rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0.0f);
                     currentStep++;
                 }
                 break;
             case IState<StateType>.Step.Start:
                 {
-                    rigidbody.AddForce(Vector2.up * character.jumpForce, ForceMode2D.Impulse);
-                    animator.Play("Jump");
+                    
                     currentStep++;
                 }
                 break;
@@ -50,6 +58,5 @@ public class StateJump : State
         }
 
         return destination;
-
     }
 }

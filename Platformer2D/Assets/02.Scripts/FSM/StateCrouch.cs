@@ -5,11 +5,10 @@ using UnityEngine;
 public class StateCrouch : State
 {
     public override bool canExecute => true;
-    private GroundDetetor _groundDetetor;
-
+    private GroundDetector _groundDetector;
     public StateCrouch(StateMachine machine) : base(machine)
     {
-        _groundDetetor = machine.GetComponent<GroundDetetor>();
+        _groundDetector = machine.GetComponent<GroundDetector>();
     }
 
     public override StateType MoveNext()
@@ -20,6 +19,10 @@ public class StateCrouch : State
         {
             case IState<StateType>.Step.None:
                 {
+                    movement.isMovable = false;
+                    movement.isDirectionChangeable = true;
+                    rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                    animator.speed = 1.0f;
                     currentStep++;
                 }
                 break;
@@ -36,12 +39,11 @@ public class StateCrouch : State
                         animator.Play("CrouchIdle");
                         currentStep++;
                     }
-                   
                 }
                 break;
             case IState<StateType>.Step.OnAction:
                 {
-                    if (_groundDetetor.isDetected == false)
+                    if (_groundDetector.isDetected == false)
                         destination = StateType.Fall;
                 }
                 break;
@@ -52,6 +54,5 @@ public class StateCrouch : State
         }
 
         return destination;
-
     }
 }

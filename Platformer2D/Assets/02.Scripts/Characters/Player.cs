@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : Character
 {
     private PlayerInput _input;
-
+   
     protected override void Awake()
     {
         base.Awake();
@@ -18,24 +19,24 @@ public class Player : Character
         InputAction crouchAction = _input.currentActionMap.FindAction("Crouch");
         crouchAction.performed += ctx => stateMachine.ChangeState(StateType.Crouch);
         crouchAction.canceled += ctx => stateMachine.ChangeState(StateType.StandUp);
-    }
 
-    public void OnJump()
-    {
-        stateMachine.ChangeState(StateType.Jump);
+        InputAction upArrowAction = _input.currentActionMap.FindAction("UpArrow");
+        upArrowAction.performed += ctx => stateMachine.ChangeState(StateType.LadderUp);
+
     }
 
     private void Start()
     {
         stateMachine.InitStates(new Dictionary<StateType, IState<StateType>>()
         {
-            { StateType.Idle, new StateIdle(stateMachine)},
-            { StateType.Move, new StateMove(stateMachine)},
-            { StateType.Jump, new StateJump(stateMachine)},
-            { StateType.Fall, new StateFall(stateMachine)},
-            { StateType.Land, new StateLand(stateMachine)},
-            { StateType.Crouch, new StateCrouch(stateMachine)},
-            { StateType.StandUp, new StateStandUp(stateMachine)},
+            { StateType.Idle, new StateIdle(stateMachine) },
+            { StateType.Move, new StateMove(stateMachine) },
+            { StateType.Jump, new StateJump(stateMachine) },
+            { StateType.Fall, new StateFall(stateMachine) },
+            { StateType.Land, new StateLand(stateMachine) },
+            { StateType.Crouch, new StateCrouch(stateMachine) },
+            { StateType.StandUp, new StateStandUp(stateMachine) },
+            { StateType.LadderUp, new StateLadderUp(stateMachine) },
         });
     }
 }

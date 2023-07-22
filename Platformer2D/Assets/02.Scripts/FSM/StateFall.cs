@@ -5,12 +5,12 @@ using UnityEngine;
 public class StateFall : State
 {
     public override bool canExecute => true;
-    private GroundDetetor _groundDetector;
-    private float _statePosY;
+    private GroundDetector _groundDetector;
+    private float _startPosY;
 
     public StateFall(StateMachine machine) : base(machine)
     {
-        _groundDetector = machine.GetComponent<GroundDetetor>();
+        _groundDetector = machine.GetComponent<GroundDetector>();
     }
 
     public override StateType MoveNext()
@@ -21,13 +21,18 @@ public class StateFall : State
         {
             case IState<StateType>.Step.None:
                 {
+                    movement.isMovable = false;
+                    movement.isDirectionChangeable = true;
+                    rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                    animator.speed = 1.0f;
+                    animator.Play("Fall");
+                    _startPosY = rigidbody.position.y;
                     currentStep++;
                 }
                 break;
             case IState<StateType>.Step.Start:
                 {
-                    animator.Play("Fall");
-                    _statePosY= rigidbody.position.y;
+                   
                     currentStep++;
                 }
                 break;
@@ -38,13 +43,12 @@ public class StateFall : State
                 break;
             case IState<StateType>.Step.OnAction:
                 {
-                    if(_groundDetector.isDetected)
+                    if (_groundDetector.isDetected)
                     {
-                        if(_statePosY - rigidbody.position.y > character.landDistance)
-                            destination= StateType.Land;
+                        if (_startPosY - rigidbody.position.y > character.landDistance)
+                            destination = StateType.Land;
                         else
                             destination = movement.horizontal == 0.0f ? StateType.Idle : StateType.Move;
-                           
                     }
                 }
                 break;
@@ -55,6 +59,5 @@ public class StateFall : State
         }
 
         return destination;
-
     }
 }

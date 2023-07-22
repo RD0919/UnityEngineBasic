@@ -15,6 +15,9 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
         get => _direction;
         set
         {
+            if (_direction == value)
+                return;
+
             if (value > 0)
             {
                 _direction = DIRECTION_RIGHT;
@@ -32,16 +35,16 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
 
     public float hp 
     { 
-        get => _hp;
+        get => _hp; 
         set
         {
             float prev = _hp;
             _hp = value;
 
-            if(prev != value)
+            if (prev != value)
             {
                 onHpChanged?.Invoke(value);
-                if(prev > value)
+                if (prev > value)
                     onHpDecreased?.Invoke(prev - value);
                 else
                     onHpIncreased?.Invoke(value - prev);
@@ -49,10 +52,9 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
 
             if (value >= _hpMax)
                 onHpMax?.Invoke();
-            else if(value <= _hpMin)
+            else if (value <= _hpMin)
                 onHpMin?.Invoke();
         }
-    
     }
 
     public float hpMax => _hpMax;
@@ -69,7 +71,6 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
     private float _hp;
     [SerializeField] private float _hpMax = 100.0f;
     [SerializeField] private float _hpMin = 0.0f;
-
 
     public enum StateType
     {
@@ -382,9 +383,9 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
 
     private void Start()
     {
-        hp = _hpMax;
-        onHpMin += () => ChangeState(StateType.Die); //람다식
-        HpBar.Create(this, this, transform, new Vector3(0.0f, _col.size.y + 0.1f, 0.0f)); 
+        hp = hpMax;
+        onHpMin += () => ChangeState(StateType.Die);
+        HpBar.Create(this, this, transform, new Vector3(0.0f, _col.size.y + 0.1f, 0.0f));
         _ai = AI.Think;
     }
 
@@ -422,12 +423,9 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
         Collider2D detected = Physics2D.OverlapCircle(_rb.position, _aiDetectRange, aiDetectMask);
         target = detected ? detected.gameObject : null;
 
-        if (detected != null)
-        {
-            target = detected.gameObject;
-        }
-
-        if (_aiAutoFollow && _ai < AI.StartFollow && target) //&& : &와 다르게 읽던 중 false가 있으면 그만 읽고 false 반환
+        if (_aiAutoFollow &&
+            _ai < AI.StartFollow &&
+            target)
         {
             _ai = AI.StartFollow;
         }
@@ -475,6 +473,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
                 break;
             case AI.StartFollow:
                 {
+                    ChangeState(StateType.Move);
                     _ai = AI.Follow;
                 }
                 break;
@@ -486,16 +485,17 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
                         return;
                     }
 
-                    if(_rb.position.x < target.transform.position.x - _col.size.x)
+                    if (_rb.position.x < target.transform.position.x - _col.size.x)
                     {
                         direction = DIRECTION_RIGHT;
                     }
                     else if (_rb.position.x > target.transform.position.x + _col.size.x)
                     {
-                        direction= DIRECTION_LEFT;
+                        direction = DIRECTION_LEFT;
                     }
-                    
-                    if(_aiAttackEnable && Vector2.Distance(_rb.position, target.transform.position) < _aiAttackRange)
+
+                    if (_aiAttackEnable &&
+                        Vector2.Distance(_rb.position, target.transform.position) < _aiAttackRange)
                     {
                         _ai = AI.StartAttack;
                     }
@@ -503,7 +503,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
                 break;
             case AI.StartAttack:
                 {
-                    if(ChangeState(StateType.Attack))
+                    if (ChangeState(StateType.Attack))
                     {
                         _ai = AI.Attack;
                     }
@@ -515,15 +515,16 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
                 break;
             case AI.Attack:
                 {
-                    //공격이 끝날 때까지 기다리기 Wait untill Attack finished
-                    if(current != StateType.Attack)
-                        _ai= AI.Think;
+                    // wait until attack is finished
+                    if (current != StateType.Attack)
+                        _ai = AI.Think;
                 }
                 break;
             default:
                 break;
         }
     }
+
     public void Damage(GameObject damager, float amout)
     {
         target = damager;
@@ -533,17 +534,16 @@ public class EnemyController : MonoBehaviour, IDamageable, IDirectionChangeable
 
     protected virtual void OnDrawGizmos()
     {
-        if(_aiAutoFollow)
+        if (_aiAutoFollow)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, _aiDetectRange);
         }
-        if(_aiAttackEnable)
+
+        if (_aiAttackEnable)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _aiAttackRange);
         }
     }
 }
-
-

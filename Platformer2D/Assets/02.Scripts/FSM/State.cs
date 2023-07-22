@@ -11,6 +11,8 @@ public enum StateType
     Land,
     Crouch,
     StandUp,
+    LadderUp,
+    LadderDown,
     Attack,
     Hurt,
     Die
@@ -18,7 +20,7 @@ public enum StateType
 
 public abstract class State : IState<StateType>
 {
-    public virtual bool canExecute { get; }
+    public abstract bool canExecute { get; }
     public IState<StateType>.Step step => currentStep;
     protected IState<StateType>.Step currentStep;
     protected StateMachine machine;
@@ -33,20 +35,18 @@ public abstract class State : IState<StateType>
     {
         this.machine = machine;
         this.animator = machine.GetComponentInChildren<Animator>();
-        this.rigidbody= machine
-            
-            .GetComponent<Rigidbody2D>();
+        this.rigidbody = machine.GetComponent<Rigidbody2D>();
         this.collider = machine.GetComponent<CapsuleCollider2D>();
         this.transform = machine.GetComponent<Transform>();
         this.character = machine.GetComponent<Character>();
         this.movement = machine.GetComponent<Movement>();
-
     }
+
 
     public abstract StateType MoveNext();
 
     public void Reset()
     {
-       currentStep = IState<StateType>.Step.None;
+        currentStep = IState<StateType>.Step.None;
     }
 }
