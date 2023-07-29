@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Crouch",
+                    "name": "DownArrow",
                     "type": "Button",
                     "id": "bb752535-cd18-4551-8825-bf917c13b706",
                     "expectedControlType": "Button",
@@ -26,7 +26,7 @@
                 {
                     "name": "UpArrow",
                     "type": "Button",
-                    "id": "3ce27953-05a9-4ef5-bd63-efd8f2bc0cb4",
+                    "id": "5e0ba181-149c-4fbf-a735-ce0dc79b0452",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -52,13 +52,13 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Crouch",
+                    "action": "DownArrow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a1fea020-703c-40ac-9584-ac84a2e8e2c4",
+                    "id": "857359ee-8ef3-49e5-8717-909482eb13b9",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",

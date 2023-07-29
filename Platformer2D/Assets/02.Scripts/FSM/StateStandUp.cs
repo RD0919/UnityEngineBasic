@@ -29,7 +29,6 @@ public class StateStandUp : State
                 break;
             case IState<StateType>.Step.Start:
                 {
-                    
                     currentStep++;
                 }
                 break;

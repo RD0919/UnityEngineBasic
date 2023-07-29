@@ -25,13 +25,12 @@ public class StateMove : State
                     rigidbody.bodyType = RigidbodyType2D.Dynamic;
                     animator.speed = 1.0f;
                     animator.Play("Move");
-                    
                     currentStep++;
                 }
                 break;
             case IState<StateType>.Step.Start:
                 {
-                    
+                    currentStep++;
                 }
                 break;
             case IState<StateType>.Step.Casting:

@@ -32,7 +32,6 @@ public class StateFall : State
                 break;
             case IState<StateType>.Step.Start:
                 {
-                   
                     currentStep++;
                 }
                 break;

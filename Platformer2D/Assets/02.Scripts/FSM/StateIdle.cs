@@ -25,12 +25,11 @@ public class StateIdle : State
                     animator.speed = 1.0f;
                     animator.Play("Idle");
                     currentStep++;
-                    currentStep++;
                 }
                 break;
             case IState<StateType>.Step.Start:
                 {
-                   
+                    currentStep++;
                 }
                 break;
             case IState<StateType>.Step.Casting:

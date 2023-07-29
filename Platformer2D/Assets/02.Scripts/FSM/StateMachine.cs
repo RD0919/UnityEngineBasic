@@ -29,13 +29,13 @@ public class StateMachine : MonoBehaviour
         current.Reset();
         current = states[newType];
         currentType = newType;
+        _isDirty = true;
         return true;
-        _isDirty= true;
     }
 
     private void Update()
     {
         ChangeState(current.MoveNext());
-        _isDirty= false;
+        _isDirty = false;
     }
 }

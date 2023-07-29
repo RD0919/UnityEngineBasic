@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(StateMachine))]
+[RequireComponent(typeof(StateMachine), typeof(GroundDetector))]
 public abstract class Character : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
@@ -11,11 +11,13 @@ public abstract class Character : MonoBehaviour
     public float landDistance = 0.5f;
     protected StateMachine stateMachine;
     protected Movement movement;
+    protected GroundDetector groundDetector;
 
     protected virtual void Awake()
     {
         stateMachine = GetComponent<StateMachine>();
         movement = GetComponent<Movement>();
+        groundDetector = GetComponent<GroundDetector>();
 
         movement.onHorizontalChanged += (value) =>
         {

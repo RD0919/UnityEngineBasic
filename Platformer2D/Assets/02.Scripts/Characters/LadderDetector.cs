@@ -1,24 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 
-public class LadderDetecter : MonoBehaviour
+public class LadderDetector : MonoBehaviour
 {
-
-    public bool isGoupPossible
+    public bool isGoUpPossible
     {
-        get 
+        get
         {
-            Collider2D col = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.up * _upLadderDetectOffsetY, _detectRadius, _ladderMask);
+            Collider2D col =
+                Physics2D.OverlapCircle((Vector2)transform.position + Vector2.up * _upLadderDetectOffsetY,
+                                                     _detectRadius,
+                                                     _ladderMask);
             upLadder = col ? col.GetComponent<Ladder>() : null;
             return upLadder;
         }
     }
-    public bool isGodownPossible
+
+    public bool isGoDownPossible
     {
         get
         {
-            Collider2D col = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.down * _downLadderDetectOffsetY, _detectRadius, _ladderMask);
+            Collider2D col =
+                Physics2D.OverlapCircle((Vector2)transform.position + Vector2.down * _downLadderDetectOffsetY,
+                                                     _detectRadius,
+                                                     _ladderMask);
             downLadder = col ? col.GetComponent<Ladder>() : null;
             return downLadder;
         }
@@ -40,5 +47,4 @@ public class LadderDetecter : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + Vector3.down * _downLadderDetectOffsetY, _detectRadius);
     }
-
 }

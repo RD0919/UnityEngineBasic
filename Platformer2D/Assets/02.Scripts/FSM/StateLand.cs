@@ -23,12 +23,11 @@ public class StateLand : State
                     animator.speed = 1.0f;
                     animator.Play("Land");
                     currentStep++;
-                    currentStep++;
                 }
                 break;
             case IState<StateType>.Step.Start:
                 {
-                    
+                    currentStep++;
                 }
                 break;
             case IState<StateType>.Step.Casting:
