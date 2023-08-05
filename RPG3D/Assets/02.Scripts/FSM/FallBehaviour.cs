@@ -6,9 +6,10 @@ public class FallBehaviour : BehaviourBase
 {
     [SerializeField] private float _landingHeight = 1.5f;
     private float _startPosY;
-    public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
+
+    public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
     {
-        base.OnStateMachineExit(animator, stateMachinePathHash);
+        base.OnStateMachineEnter(animator, stateMachinePathHash);
         _startPosY = rigidbody.position.y;
     }
 
