@@ -13,17 +13,17 @@ public class FallBehaviour : BehaviourBase
         _startPosY = rigidbody.position.y;
     }
 
+
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
+
         if (manager.isGrounded)
         {
-            if(_startPosY - rigidbody.position.y > _landingHeight)
+            if (_startPosY - rigidbody.position.y > _landingHeight)
                 manager.ChangeState(StateID.Land);
             else
                 manager.ChangeState(StateID.Move);
-
         }
-
     }
 }

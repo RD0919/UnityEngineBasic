@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class BehaviourBase : StateMachineBehaviour
 {
-
     protected Rigidbody rigidbody;
     protected BehaviourManager manager;
-
 
     public void Initialize(BehaviourManager manager, Rigidbody rigidbody)
     {
@@ -18,7 +16,7 @@ public class BehaviourBase : StateMachineBehaviour
     public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
     {
         base.OnStateMachineEnter(animator, stateMachinePathHash);
-        manager.currentMahineBehaviour= this;
+        manager.currentMachineBehaviour = this;
         animator.SetBool("isDirty", false);
     }
 }

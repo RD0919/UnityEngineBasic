@@ -8,11 +8,13 @@ public class MoveBehaviour : BehaviourBase
     {
         base.OnStateMachineEnter(animator, stateMachinePathHash);
         manager.hasJumped = false;
-        manager.hasSomersault= false;
+        manager.hasSomersaulted = false;
     }
+
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
+
         if (manager.isGrounded == false)
             manager.ChangeState(StateID.Fall);
     }
