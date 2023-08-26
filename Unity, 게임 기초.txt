@@ -1,0 +1,15 @@
+UI(View) : 가장 앞에 있는 UI를 먼저 처리(스텍을 활용 : 스택에 가장 위가 플레이어에게 가까움)
+Linked List :  뒤에 있는게 플레이어에게 앞이다 UI를 클릭하면 Manager가 클릭한 UI를 뒤로 옮긴다
+캔버스는 한가지의 용도를 갖는다
+** UI 관리 포트 폴리오에 어필 **
+DataModel(Source) : 데이터가 수정되거나 Input을 사용될 떄 UI에게 통지한다
+Controller : 플레이어의 액션에 따라 DataModel을 수정한다
+이게 MVC
+presenter : Data Model이 갱신 될때 그 정보를 받고 있는다 (Data Model은 서버라서 presenter이 없을 경수 볼 때마다 비용이 든다)
+이게 MVP
+역할이 분리되어 있고 유지보수, 서버비용도 줄어 제일 많이 쓰지만 구조가 1:1 매칠이라 생산성이 좋지 않음(쓸 코드가 많다 베이스 구조 잡는데 오래 걸린다)
+View Model
+DataBinding : View Model과 결합함
+이게 MVVM
+
+포탈 시스템 : 플레이어의 위치가 from 과 to가 같은 포탈을 찾아 이동시킨다
